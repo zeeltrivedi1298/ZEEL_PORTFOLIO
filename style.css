@@ -27,8 +27,18 @@ img {
   /* border: 5px solid #131414; */
   border: 5px solid rgb(71, 137, 191); 
 
+  
+}
 
+#image1{
 
+  width: 350px;
+  object-fit: contain;
+  align-self: center;
+  display: block;
+  border-radius: 20px;
+   /* border-radius: 15px 50px;  */
+  height: 280px;
   
 }
 
@@ -86,7 +96,7 @@ header {
 }
 
 .card {
-  padding: 10px;
+  padding: 20px;
 
   border: 1px solid rgba(247, 247, 247, .25);
   border-radius: 20px;
