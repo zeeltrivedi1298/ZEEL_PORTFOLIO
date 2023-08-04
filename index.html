@@ -1,37 +1,120 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        <style>html{visibility: hidden;opacity:0; /* hide's for no awkward preload */
+        <style>html{visibility: visible;opacity:0; /* hide's for no awkward preload */
         font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-        font-weight: 500;}</style>
+        font-weight: 500;}
+        
+    
+        html {
+            visibility: visible;
+            opacity: 0; /* hide's for no awkward preload */
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+            font-weight: 500;
+        }
+
+        /* Add the navbar styles */
+        .navbar {
+            /* background-color: #eee4ee; */
+            /* background-color: #bee7e5; */
+            background-color: #a7dad8;
+            display: flex;
+            justify-content: center;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 999;
+        }
+
+        .navbar ul {
+            display: flex;
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .navbar li {
+            margin: 0 40px;
+        }
+
+        .navbar li a {
+            color: #141313;
+            text-decoration: none;
+            padding: 10px;
+        }
+
+        .navbar li a:hover {
+            background-color: #555;
+            border-radius: 5px;
+        }
+    </style>
+        
+
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
     </head>
+    
+    <body>
+        <!-- Navbar -->
+        <nav class="navbar">
+            <ul>
+                <!-- Link each navigation item to the respective section using id attributes -->
+                <li><a href="#about">About Me</a></li>
+                <li><a href="#google">Google Residency</a></li>
+                <li><a href="Work Experience">Work Experience</a></li>
+                <li><a href="Project">My Project</a></li>
 
+
+                <!-- <li><a href="#haemotracer">Haemotracer App</a></li>
+                <li><a href="#orange">Orange Blossom</a></li>
+                <li><a href="#algorithm">Algorithm Traveler</a></li> -->
+                <li><a href="#portfolio">Portfolio</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+        
+        <!-- Rest of your content... -->
+        <!-- Your existing HTML code goes here -->
+        
+    
     <script type="module" src="/3d-background.js"></script>
+
+ 
+    </section> 
 
     <canvas></canvas>
 
     <div class="curtain"></div>
+
+    <div class>
+
+
+    </div>
+
+    
 
     <section class="container">
         <div class="slider-wrapper">
             <div class="slider">
                 <img id="slide-1" src="resume 3.png" alt="3D rendering of an imaginary orange planet in space" />
                 <!-- <img id="slide-2" src="Google Zeel.jpg" alt="3D rendering of an imaginary green planet in space" /> -->
-                <img id="slide-2" src="resume 1.jpg" alt="3D rendering of an imaginary green planet in space" />
-                <img id="slide-3" src="resume 19.png" alt="3D rendering of an imaginary blue planet in space" />
+                <img id="slide-2" src="resume 19.png" alt="3D rendering of an imaginary green planet in space" />
+                <img id="slide-3" src="resume 16.png" alt="3D rendering of an imaginary blue planet in space" />
+                <img id="slide-4" src="resume 1.jpg" alt="3D rendering of an imaginary blue planet in space" />
+                <img id="slide-5" src="resume 20.png" alt="3D rendering of an imaginary blue planet in space" />
             </div>
             <div class="slider-nav">
                 <a href="#slide-1"></a>
                 <a href="#slide-2"></a>
                 <a href="#slide-3"></a>
+                <a href="#slide-4"></a>
+                <a href="#slide-5"></a>
             </div>
         </div>
     </section>
-    
-    <div><p>swipe please >>>></p><p> and scroll down to know more about me</p></div>
 
 
     <div class="flex_container">
@@ -185,14 +268,16 @@
                 <!-- <img id="slide-2" src="Google Zeel.jpg" alt="3D rendering of an imaginary green planet in space" /> -->
                 <img id="slide-2" src="resume 13.png" alt="3D rendering of an imaginary green planet in space" />
                 <img id="slide-3" src="resume 22.png" alt="3D rendering of an imaginary blue planet in space" />
+                <img id="slide-3" src="resume 17.png" alt="3D rendering of an imaginary blue planet in space" />
             </div>
             <div class="slider-nav">
                 <a href="#slide-1"></a>
                 <a href="#slide-2"></a>
                 <a href="#slide-3"></a>
+                <a href="#slide-4"></a>
             </div>
         </div>
     </section>
-
+<body>
 </html>
 
