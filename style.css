@@ -103,8 +103,8 @@ header {
   border-radius: 20px;
   background-color: rgba(247, 247, 247, 0.45);
   box-shadow: 0 0 10px 1px rgba(18, 18, 18, 0.25);
-
   backdrop-filter: blur(10px);
+  width: 50%;
 }
 
 .single_content {
@@ -126,6 +126,33 @@ header {
       display: grid;
       grid-template-columns: 1fr 1fr;
   }
+
+  img{
+    background-color: rgb(244, 244, 244);
+  }
+}
+
+  /* --------------------------- */
+
+  .single_column {
+    display:block;
+  }
+  
+  .single_column > * {
+    max-width: 604px;
+    max-width: 302px;
+    
+    padding: 0.5rem;
+  }
+  
+  @media (min-width:768px) {
+    .single_column {
+        display: grid;
+        grid-template-columns: 100%;
+        
+
+    }
+    /* ---------------------------------- */
   img{
     background-color: rgb(244, 244, 244);
   }
@@ -274,4 +301,12 @@ body {
 
 .slider-nav1 a:hover {
 	opacity: 1;
+}
+
+p{
+  text-align:justify;
+}
+
+.tp{
+  color: rgb(86, 77, 140);
 }
