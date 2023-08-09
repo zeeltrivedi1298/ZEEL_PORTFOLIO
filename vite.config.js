@@ -1,5 +1,5 @@
 import {defineConfig} from 'vite'
 
 export default defineConfig({
-    base: '/Zeel_Portfolio'
+    base: '/ZEEL_PORTFOLIO'
 })
