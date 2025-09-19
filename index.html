@@ -1,390 +1,534 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Zeel Trivedi • Portfolio</title>
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <style>html{visibility: visible;opacity:0; /* hide's for no awkward preload */
+        font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+        font-weight: 500;}
+        
+    
+        html {
+            visibility: visible;
+            opacity: 0; /* hide's for no awkward preload */
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+            font-weight: 500;
+        }
 
-  <style>
-    /* Base */
-    html {
-      visibility: visible;
-      opacity: 1; /* was 0 (page appeared invisible) */
-      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
-        Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue",
-        sans-serif;
-      font-weight: 500;
-      scroll-behavior: smooth;
-    }
-    body { margin: 0; background: linear-gradient(180deg,#5fd0cc,#6bd3df,#7e56ff); }
+        /* Add the navbar styles */
+        .navbar {
+            /* background-color: #eee4ee; */
+            /* background-color: #bee7e5; */
+            background-color: #a7dad8;
+            display: flex;
+            justify-content: center;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 999;
+        }
 
-    /* Navbar */
-    .navbar {
-      background-color: #a7dad8;
-      display: flex;
-      justify-content: center;
-      position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
-      z-index: 999;
-      box-shadow: 0 2px 10px rgba(0,0,0,.08);
-    }
-    .navbar ul {
-      display: flex;
-      list-style: none;
-      padding: 10px 8px;
-      margin: 0;
-    }
-    .navbar li { margin: 0 18px; }
-    .navbar a {
-      color: #141313;
-      text-decoration: none;
-      padding: 8px 10px;
-      border-radius: 6px;
-      font-weight: 700;
-    }
-    .navbar a:hover { background: #555; color: #fff; }
+        .navbar ul {
+            display: flex;
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
 
-    /* Generic layout helpers from your page */
-    .flex_container { display: flex; justify-content: center; padding: 24px; }
-    .two_column.card, .single_content.card {
-      width: min(1050px, 92vw);
-      background: rgba(255,255,255,.85);
-      backdrop-filter: blur(6px);
-      border-radius: 18px;
-      border: 1px solid rgba(0,0,0,.06);
-      box-shadow: 0 12px 26px rgba(0,0,0,.12);
-      padding: 20px;
-      display: grid;
-      grid-template-columns: 1.2fr .9fr;
-      gap: 22px;
-      align-items: center;
-    }
-    .single_content.card { grid-template-columns: 1fr; text-align: center; }
-    #image1, .two_column.card img {
-      width: 100%;
-      height: 230px;
-      object-fit: cover;
-      border-radius: 14px;
-      border: 1px solid rgba(0,0,0,.08);
-    }
-    header { font-size: 1.4rem; font-weight: 800; margin: 0 0 8px; }
-    p { margin: .5rem 0; line-height: 1.55; }
+        .navbar li {
+            margin: 0 30px;
+        }
 
-    @media (max-width: 760px) {
-      .two_column.card { grid-template-columns: 1fr; }
-      #image1, .two_column.card img { height: 200px; order: -1; }
-    }
+        .navbar li a {
+            color: #141313;
+            text-decoration: none;
+            padding: 10px;
+        }
 
-    /* Slider (kept your classes) */
-    .container, .container1 { padding-top: 78px; }
-    .slider-wrapper, .slider-wrapper1 { width: min(1100px, 95vw); margin: 0 auto; }
-    .slider, .slider1 {
-      display: grid;
-      grid-auto-flow: column;
-      grid-auto-columns: 100%;
-      overflow-x: auto;
-      scroll-snap-type: x mandatory;
-      gap: 10px;
-      border-radius: 16px;
-    }
-    .slider img, .slider1 img {
-      width: 100%; height: 430px; object-fit: cover; scroll-snap-align: center; border-radius: 16px;
-      border: 1px solid rgba(0,0,0,.08);
-    }
-    .slider-nav, .slider-nav1 {
-      display: flex; justify-content: center; gap: 10px; margin-top: 10px;
-    }
-    .slider-nav a, .slider-nav1 a {
-      width: 10px; height: 10px; border-radius: 999px; background: rgba(255,255,255,.9); border: 1px solid rgba(0,0,0,.2);
-      display: inline-block;
-    }
+        .navbar li a:hover {
+            background-color: #555;
+            border-radius: 5px;
+        }
+    </style>
+        
 
-    /* ===== Work Experience Cards ===== */
-    #experience { padding: 110px 16px 40px; } /* room under fixed nav */
-    .section-kicker {
-      text-align: center; font-weight: 800; letter-spacing: .4px; color: #111; opacity: .9; margin-bottom: 12px;
-    }
-    .exp-grid {
-      display: grid; grid-template-columns: 1fr; gap: 28px;
-      max-width: 1050px; margin: 0 auto;
-    }
-    .exp-card {
-      display: grid; grid-template-columns: 1.2fr .9fr; gap: 22px; align-items: center;
-      background: linear-gradient(135deg, rgba(255,255,255,.92), rgba(245,245,255,.92));
-      border: 1px solid rgba(0,0,0,.06); border-radius: 18px;
-      box-shadow: 0 12px 26px rgba(0,0,0,.12); padding: 22px;
-      transition: transform .2s ease, box-shadow .2s ease;
-    }
-    .exp-card:hover { transform: translateY(-4px); box-shadow: 0 18px 34px rgba(0,0,0,.18); }
-    .exp-title { font-size: 1.25rem; font-weight: 800; margin: 0 0 6px 0; }
-    .exp-meta { font-size: .95rem; color: #313131; opacity: .8; margin-bottom: 10px; }
-    .exp-desc { margin: 8px 0 0 0; line-height: 1.5; font-weight: 500; }
-    .exp-card img { width: 100%; height: 230px; object-fit: cover; border-radius: 14px; border: 1px solid rgba(0,0,0,.08); }
-    @media (max-width: 760px) {
-      .exp-card { grid-template-columns: 1fr; }
-      .exp-card img { height: 200px; order: -1; }
-    }
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+      <script type="module" crossorigin src="/ZEEL_PORTFOLIO/assets/index-fc2bbdf9.js"></script>
+      <link rel="stylesheet" href="/ZEEL_PORTFOLIO/assets/index-09a9f68a.css">
+    </head>
+    
+    <body>
+        <!-- Navbar -->
+        <nav class="navbar">
+            <ul>
+                <!-- Link each navigation item to the respective section using id attributes -->
+                <li><a href="#about">About Me</a></li>
+                <li><a href="#google">Google Residency</a></li>
+                <li><a href="#google">Work Experience</a></li>
+                <li><a href= "#Project">My Project</a></li>
+                <li><a href= "#contact">Resume</a></li>
 
-    /* Footer links */
-    .centered a { font-weight: 800; color: #0d3a5e; }
-  </style>
-  <script type="module" crossorigin src="/ZEEL_PORTFOLIO/assets/index-fc2bbdf9.js"></script>
-  <link rel="stylesheet" href="/ZEEL_PORTFOLIO/assets/index-09a9f68a.css">
-</head>
 
+                <!-- <li><a href="#haemotracer">Haemotracer App</a></li>
+                <li><a href="#orange">Orange Blossom</a></li>
+                <li><a href="#algorithm">Algorithm Traveler</a></li> -->
+                <li><a href="#portfolio">Portfolio</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+        
+        <!-- Rest of your content... -->
+        <!-- Your existing HTML code goes here -->
+        
+    
+    
+
+ 
+    </section> 
+
+    <canvas></canvas>
+
+    <div class="curtain"></div>
+
+    <div class>
+
+
+    </div>
+
+    
+
+    <section class="container">
+        <div class="slider-wrapper">
+            <div class="slider">
+                <img id="slide-1" src="/ZEEL_PORTFOLIO/assets/resume-3-cf7a9524.png" alt="3D rendering of an imaginary orange planet in space" />
+                <!-- <img id="slide-2" src="Google Zeel.jpg" alt="3D rendering of an imaginary green planet in space" /> -->
+                <img id="slide-2" src="/ZEEL_PORTFOLIO/assets/resume-19-d2df27bb.png" alt="3D rendering of an imaginary green planet in space" />
+                <img id="slide-3" src="/ZEEL_PORTFOLIO/assets/resume-16-51ff7487.png" alt="3D rendering of an imaginary blue planet in space" />
+                <img id="slide-4" src="/ZEEL_PORTFOLIO/assets/resume-1-cc123120.jpg" alt="3D rendering of an imaginary blue planet in space" />
+                <img id="slide-5" src="/ZEEL_PORTFOLIO/assets/resume-20-0b76bea3.png" alt="3D rendering of an imaginary blue planet in space" />
+                <img id="slide-6" src="/ZEEL_PORTFOLIO/assets/resume-10-a78e78a6.png" alt="3D rendering of an imaginary blue planet in space" />
+                <img id="slide-7" src="/ZEEL_PORTFOLIO/assets/resume-22-1124dd80.png" alt="3D rendering of an imaginary blue planet in space" />
+            </div>
+            <div class="slider-nav">
+                <a href="#slide-1"></a>
+                <a href="#slide-2"></a>
+                <a href="#slide-3"></a>
+                <a href="#slide-4"></a>
+                <a href="#slide-5"></a>
+                <a href="#slide-6"></a>
+                <a href="#slide-6"></a>
+            </div>
+        </div>
+    </section>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    
+    
+
+
+
+    <div class="flex_container" id="about">
+        <div class="two_column card">
+            <div >
+                <!-- <header>Hello,</header> -->
+                <!-- <header>My name is Zeel Trivedi.</header> -->
+                <p>Software Engineer with 4+ years of experience in AI/ML systems and cloud-native solutions using Azure and AWS.
+Proven track record of designing, developing, and optimizing AI-driven applications and model deployment for
+scalable, high-performance services. Skilled in working with Large Language Models (LLMs), Generative AI
+(GenAI), and Retrieval-Augmented Generation (RAG), ensuring security and compliance in the cloud environment.
+Demonstrated expertise in CI/CD pipelines, infrastructure as code, and cloud-based AI models that meet
+reliability, safety, and scalability standards.</p><p>Currently pursuing my Master's degree in Computer Science at California State University, Fullerton. I've been involved in cutting-edge research and projects which helped to learn new skills.</p>
+
+                    <!-- , including React Admin Dashboard App and Haemotracer Mobile Application.</p> -->
+
+                <p> <u>Languages & Frameworks:</u> Java, Python, JavaScript, C++, React.js, Express.js, SQL, HTML, CSS, Bootstrap, Android, Agile Methodologies, Docker, Django, Java spring boot, Angular, Kubernetes </p>
+                <p><u>Tools:</u> Git, VS Code, Jira, MySQL Workbench, PowerBI, GitHub, Android Studio, MySQL, PostgreSQL, MongoDB</p>
+               
+                
+
+                <!-- <p> As a teaching associate at CSUF, I've had the privilege work with Google team and guiding over 150 students in web frontend development, databases, and OOP. Additionally, my experience as a project assistant has allowed me to contribute to impactful projects like Orange Blossom Website and Algorithm Savvy Traveler. At start up All in Motion IT Solutions,excelled as a software developer,enhancing inventory management systems and building analytical dashboards</p> -->
+                <!-- My <a href="https://github.com/zeeltrivedi1298">Github</a> containing this site and all projects featured 
+                here.
+                <br>
+                My <a href="https://www.linkedin.com/in/zeel-trivedi/">LinkedIn</a>, feel free to send me a message 
+                and connect!
+                <br>
+                And you can send me an e-mail at <a href="mailto:zeeltrivedi1298@outlook.com">zeeltrivedi1298@outlook.com</a>
+                <br> -->
+                <!-- Scroll down to see what the background is doing, and some short summaries on my projects. -->
+            </div>
+            <img src="/ZEEL_PORTFOLIO/assets/Final-profile-489ed60a.jpeg" >
+        </div>
+    </div>
+
+    <br>
+    <br>
+    <br>
+
+<!-- ------------------------ -->
+    <div class="flex_container" id="about">
+        <div class="card">
+            <div >
+                <!-- <header>Hello,</header> -->
+                <!-- <header>My name is Zeel Trivedi.</header> -->
+                <B>Experience:
+                </B>
+                <p> • <u>Research Assistant:</u> Leading React Admin Dashboard development with React.js, Chart.js, and D3.js.</p>
+                   <p> • <u>Teaching Associate:</u>  As a Teaching Associate at CSUF, I've had the privilege work with Google teamGuiding 150+ students in web fronted development, Database, and OOP as a part of Google residency Google Residence Program.</p>
+                    • <u>Project Assistant:</u> Build Haemotracer Android app with real-time blood bank locator.
+                    </p>
+                    <p>• <u>Software Developer:</u> At All in Motion IT Solutions, I excelled as a software developer, enhancing inventory management systems and building analytical dashboards.</p>
+
+
+                <!-- <p> As a teaching associate,research at CSUF, I've had the privilege work with Google team and guiding over 150 students in web frontend development, databases, and OOP. Additionally, my experience as a project assistant has allowed me to contribute to impactful projects like Orange Blossom Website and Algorithm Savvy Traveler.</p> -->
+
+             <!-- excelled as a software developer, enhancing inventory management systems and building analytical dashboards -->
+
+            <!-- <p> I take pride in delivering efficient and user-friendly solutions, evident in my certifications like Oracle Certified Expert Java Platform and AWS Training by Amazon Web Services. If you're looking for a dedicated and skilled developer with a passion for innovation, feel free to connect with me through LinkedIn or check out my GitHub and portfolio for a closer look at my work. Let's collaborate and bring your ideas to life!</p> -->
+
+            <p>Certified in Oracle Java Platform  <a href="https://1drv.ms/i/s!AhTD4XHhzkqsehk2ORaroZcsgl4">Check the score </a> and AWS, I deliver efficient and user-friendly solutions. Connect with me on LinkedIn or explore my GitHub and portfolio. I look forward to making a meaningful impact and contributing my expertise to your projects </p>
+
+
+            <p>If you're in search of a dedicated professional to bring your digital visions to life or engineer cutting-edge software solutions, I'd be thrilled to collaborate with you. Let's join forces to create technological wonders and achieve new heights together!</p>
+
+            <p>Let's bring your ideas to life! </p>
+
+            <br>
+        
+            My <a href="https://github.com/zeeltrivedi1298">Github</a> containing this site and all projects featured 
+                here.
+                <br>
+                My <a href="https://www.linkedin.com/in/zeel-trivedi/">LinkedIn</a>, feel free to send me a message 
+                and connect!
+                <br>
+                And you can send me an e-mail at <a href="mailto:zeeltrivedi1298@outlook.com">zeeltrivedi1298@outlook.com</a>
+                
+                
+
+                
+                                
+                <!-- My <a href="https://github.com/zeeltrivedi1298">Github</a> containing this site and all projects featured  -->
+            
+            
+                <!-- My <a href="https://www.linkedin.com/in/zeel-trivedi/">LinkedIn</a>, feel free to send me a message  -->
+                
+                
+                <!-- And you can send me an e-mail at <a href="mailto:zeeltrivedi1298@outlook.com">zeeltrivedi1298@outlook.com</a> -->
+                <div class=" tp">
+                <br>
+                <br>
+                <b>--> Scroll down to see what the background is doing, and some short summaries on my work experiences and projects!</b>
+            </div>
+            </div>
+            <!-- <img src="Final profile.jpeg" > -->
+        </div>
+    </div>
+
+    
+
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+
+    <!-- <p>As a teaching associate, I've had the privilege of guiding over 150 students in web frontend development, databases, and OOP. Additionally, my experience as a project assistant has allowed me to contribute to impactful projects like Orange Blossom Website and Algorithm Savvy Traveler. At All in Motion IT Solutions, I excelled as a software developer, enhancing inventory management systems and building analytical dashboards.</p>
+
+<p>I take pride in delivering efficient and user-friendly solutions, evident in my certifications like Oracle Certified Expert Java Platform and AWS Training by Amazon Web Services. If you're looking for a dedicated and skilled developer with a passion for innovation, feel free to connect with me through LinkedIn or check out my GitHub and portfolio for a closer look at my work. Let's collaborate and bring your ideas to life! </p> -->
+
+    <!-- <div class="flex_container">
+        <div class="single_content card">
+            <header>This Portfolio</header>
+            This websites dynamic background was created using the Threejs library. The center planet, 
+            its wireframe halo and the tetrahedron 'asteroids' are all rendered seperately and animated 
+            with random offsets and rotations that are different each time the site is loaded. 
+            The layout is a single column design of flexboxes that contain reactive content cards.
+            <br>
+            <br>
+            <a href="https://github.com/A-Hoblit/Portfolio">Github Repository</a>
+        </div>
+    </div> -->
+    
+    <div class="flex_container" id="google">
+        <div class="two_column card">
+            <div>
+                <marquee><h3><b><i></i> </b><br>Scroll down to see my work experience!  </h3></i></h3></marquee>
+                <marquee direction="left"
+             behavior="alternative"
+             style= "color:black">
+             <!-- *** comment this or style="border: black 2x solid" -->
+    </marquee>
+                <header> Google Residency Program </header>
+                <p>Currently working with Google Team as a part of Google Residency program in the University and learning new skills from the Google Experts.</p><p>All praise goes to <a href="https://www.linkedin.com/in/joshdy/">JC</a> and  <a href="https://www.linkedin.com/in/jlee1031/">Johnny,</a> for allowing me to work with Google Team and helping me enjoyably improve my algorithms and data structures.</p>
+               
+                <br>
+                <br>
+                <!-- <a href="https://github.com/zeeltrivedi1298/Haemotracer_Android_Application">Github Repository</a> -->
+            </div>
+            <img src="/ZEEL_PORTFOLIO/assets/Google-Zeel-90c1938d.jpg" id="image1">
+        </div>
+    </div>
+    <br>
+
+    <div class="flex_container">
+        <div class="two_column card">
+            <div>
+                <header> Teaching Associate CSUF </header>
+                <p>Analyzing and searching new tutoring methods with various materials for 150+ students at university. Also, debugging problems, reviewing, and writing an optimized readable code with teaching team of Google.</p>
+                    
+                    <p></p>Cooperating with Google's educational institutions as part of the Google Residence Program to learn new software and web development techniques.</p>
+                    
+                    Lecturing, directing exams, and preparing lessons to 80 students for web Fronted technologies such as firebox, Grid, Javascript, Reactjs, Transitions, Transform and Animation.
+                    
+
+
+                </p>
+               
+            
+                
+                <!-- <a href="https://github.com/zeeltrivedi1298/Haemotracer_Android_Application">Github Repository</a> -->
+            </div>
+            <img src="/ZEEL_PORTFOLIO/assets/TA-3-bceb5e86.png" id="image1">
+        </div>
+    </div>
+    <div class="flex_container">
+        <div class="two_column card">
+            <div>
+                <header> Research Assistant  </header>
+                <p>Conducted research and led 60% progress of React Admin Dashboard App development, implementing front-end architecture in   React.js </p>
+                    <p>Integrated React Router for 80% enhanced navigation and utilized Chart.js or D3.js for 70% visual data representation </p>
+                    Collaborated to define requirements with 80% alignment, researched optimal design by 75%, and developed user-friendly feedback form
+                     </p>
+               
+            
+                <!-- <a href="https://github.com/zeeltrivedi1298/Haemotracer_Android_Application">Github Repository</a> -->
+            </div>
+            <img src="/ZEEL_PORTFOLIO/assets/TA-15-b20ee67e.jpg" id="image1">
+        </div>
+    </div>
+    <br>
+    <br>
+    <br>
+    <br>
+
+
+    <div class="flex_container">
+        <div class="two_column card">
+            <div>
+                <header> Project Assistant </header>
+                <p> Build an android application Haemotracer to help people with blood in an emergency in Android Studio for 100+ users.</p>
+                    Implement a basic version of Haemotrace application including MySQL database and used API Keys with Geolocation for more than 100 users</p>
+                   <p> Create a map for Haemotrace using Maps JavaScript API, Maps will be used to locate blood banks with searched blood group (Total 8 different blood groups) and track donors with Collaborative Realtime Mapping with firebase </p>
+                    Design project in Java, JavaScript, Bootstrap, Android Studio, HTML, CSS, XML, and improved UI by 50%
+                     </p>
+               
+                <br>
+                <br>
+                <!-- <a href="https://github.com/zeeltrivedi1298/Haemotracer_Android_Application">Github Repository</a> -->
+            </div>
+            <img src="/ZEEL_PORTFOLIO/assets/TA-5-4ad7d583.jpeg" id="image1">
+        </div>
+    </div>
+    <br>
+    <br>
+    <br>
+    <br>
+
+
+    <div class="flex_container">
+        <div class="two_column card">
+            <div>
+                <header> Software Developer </header>
+                <p>Identified improvements of inventory management system - code and design, made conflict resolution and reduced future efforts and achieved over 95% customer satisfaction rate</p>
+               <p> Constructed analytical dashboard, organizing team with Jira, boosted team ticket completion rate by 15%
+                Translated software requirements into concise code and decreasing load time speed by 40% by modularizing code</p>
+                Upgraded features for inventory management system with Java, JavaScript, jQuery, CSS, XML, and React.js with 52% success
+                     </p>
+               
+            
+            
+                <!-- <a href="https://github.com/zeeltrivedi1298/Haemotracer_Android_Application">Github Repository</a> -->
+            </div>
+            <img src="/ZEEL_PORTFOLIO/assets/sd-1-2cfcecc8.jpg" id="image1">
+        </div>
+    </div>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+
+    <div class="flex_container">
+        <div class="two_column card">
+            <div id="Project">
+                <marquee><h3><b><i>Welcome to my project section! </b><br>Scroll down to see few project  </h3></i></h3></marquee>
+                <marquee direction="left"
+             behavior="alternative"
+             style= "color:black">
+             <!-- *** comment this or style="border: black 2x solid" -->
+    </marquee>
+                <header> Haemotracer Mobile Application </header>
+                <p>Built an android application Haemotracer to help people with blood in an emergency in Android Studio for 100+ users.</p><p>Implement a basic version of Haemotrace application including MySQL database and used API Keys with Geolocation for more than 100 users.</p><p>Create a map for Haemotrace using Maps JavaScript API, Maps will be used to locate blood banks with searched blood group and track donors with Collaborative Realtime Mapping with firebase</p>
+
+                <p><B>Built this application with <a href="https://www.sampsonakwafuo.com/ceddi-lab">Dr. Rong Jin and Sampson Akwafuo </a> as a Project Assitant </B></p>
+               
+                
+                <a href="https://github.com/zeeltrivedi1298/Haemotracer_Android_Application">Github Repository</a>
+            </div>
+            <img src="/ZEEL_PORTFOLIO/assets/haemotracer-1-e1546d17.png" id="image1">
+        </div>
+    </div>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+
+    <div class="flex_container">
+        <div class="two_column card">
+            <div>
+                <header>Orange Blossom Website</header>
+                <p>Accelerated web application by 30% applying React.js and Express.js for customer wants to buy rare plants at home online.</p><p>Managed data of customer with 20+ rare plants, provided billing facility and generated receipt by updating MySQL database</p>
+                <a href="https://main--rad-fenglisiyu-92dbd87.netlify.app/">click here to check this website that I have deployed on netlify </a>
+            
+                
+                <br>
+                <br>
+                <a href="https://github.com/zeeltrivedi1298/Orange-Blossom-Website">Github Repository</a>
+            </div>
+            <img src="/ZEEL_PORTFOLIO/assets/Orangeblossomimage-b4d6cfec.png" id="image1">
+        </div>
+    </div>
+
+    <div class="flex_container">
+        <div class="two_column card">
+            <div>
+                <header> Algorithm Savvy Traveler  </header>
+                <p>Executed Flyod-Warshall Algorithm to find most reliable path from given pool of more than 10 cities in Python.</p><p> Measured path with maximum probability between two cities of flight's arrival time. </p> <p>Calculated and analyzed most reliable city from given pool of cities by modifying Flyod-Warshall algorithm in Python </p>
+
+            
+                <a href="https://github.com/zeeltrivedi1298/Haemotracer_Android_Application">Github Repository</a>
+            </div>
+            <img src="/ZEEL_PORTFOLIO/assets/ALGO-2-a9a63034.png" id="image1">
+        </div>
+    </div>
+
+
+    <div class="flex_container">
+        <div class="two_column card">
+            <div>
+                <header> Blog Application  </header>
+                <p>Developed a dynamic and responsive Blog Application using PHP, MySQL, and CodeIgniter.
+                   <p> Implemented a user-friendly "New Post" feature for creating blog posts with titles, descriptions, images, and tags.</p>
+                    Created a well-organized page with pagination for easy navigation through a comprehensive list of blogs.</p>
+                <br>
+                <br>
+                <a href="https://github.com/zeeltrivedi1298/Blog-Application">Github Repository</a>
+            </div>
+            <img src="/ZEEL_PORTFOLIO/assets/Blog-website-222f0c4a.png" id="image1">
+        </div>
+    </div>
+
+    <div class="flex_container"  id="portfolio">
+        <div class="two_column card">
+            <div>
+            <header>This Portfolio</header>
+           <p> This websites dynamic background was created using the Threejs library. The center planet, 
+            its wireframe halo and the tetrahedron 'asteroids' are all rendered seperately and animated 
+            with random offsets and rotations that are different each time the site is loaded. 
+            The layout is a single column design of flexboxes that contain reactive content cards.</p>
+            <br>
+            <br>
+            <a href="https://github.com/zeeltrivedi1298/Zeel_Portfolio?search=1">Github Repository</a>
+            </div>
+            <img src="/ZEEL_PORTFOLIO/assets/portfolio-1f4709b9.png" id="image1">
+        </div>
+    </div>
+
+
+    <div class="flex_container" id="contact"    >
+        <div class="single_content card centered">
+            <div >
+            <header>Thank you for having a look!</header>
+            <br>
+            <!-- <embed src="/Resume_website/ZeelTrivedi_Trivedi_Resume.pdf" type="application/pdf" width="100%" height="600px" />
+            <br> -->
+            <a href="https://drive.google.com/file/d/1IRl7pyCzEQseCsO2oXaAJY-n3jEvjzeM/view?usp=sharing"> Resume</a>
+            <br>
+            <a href="https://github.com/zeeltrivedi1298">Github</a>
+            <br>
+            <a href="https://www.linkedin.com/in/zeel-trivedi/">LinkedIn</a>
+            <br>
+            <a href="mailto:zeeltrivedi1298@outlook.com">zeeltrivedi1298@outlook.com</a>
+        </div>
+    </div>
+    </div>
+
+    <section class="container1">
+        <div class="slider-wrapper1">
+            <div class="slider1">
+                <img id="slide-1" src="/ZEEL_PORTFOLIO/assets/classroom-1-c1e9b0d0.jpeg" alt="3D rendering of an imaginary orange planet in space" />
+                <!-- <img id="slide-2" src="Google Zeel.jpg" alt="3D rendering of an imaginary green planet in space" /> -->
+                <img id="slide-2" src="/ZEEL_PORTFOLIO/assets/classroom-3-a9ba64d4.jpeg" alt="3D rendering of an imaginary green planet in space" />
+                <img id="slide-3" src="/ZEEL_PORTFOLIO/assets/classroom-5-dd090699.jpeg" alt="3D rendering of an imaginary blue planet in space" />
+                <img id="slide-4" src="/ZEEL_PORTFOLIO/assets/classroom-7-21d1b016.jpeg" alt="3D rendering of an imaginary blue planet in space" />
+                <img id="slide-4" src="/ZEEL_PORTFOLIO/assets/classroom-9-e3590a43.jpeg" alt="3D rendering of an imaginary blue planet in space" />
+            </div>
+            <div class="slider-nav1">
+                <a href="#slide-1"></a>
+                <a href="#slide-2"></a>
+                <a href="#slide-3"></a>
+                <a href="#slide-4"></a>
+                <a href="#slide-5"></a>
+            </div>
+        </div>
+    </section>
 <body>
-
-  <!-- Navbar -->
-  <nav class="navbar">
-    <ul>
-      <li><a href="#about">About Me</a></li>
-      <li><a href="#experience">Work Experience</a></li>
-      <li><a href="#projects">My Project</a></li>
-      <li><a href="#contact">Resume</a></li>
-      <li><a href="#portfolio">Portfolio</a></li>
-      <li><a href="#contact">Contact</a></li>
-    </ul>
-  </nav>
-
-  <!-- Optional background script (you had it) -->
-  
-
-  <!-- Hero / Top slider -->
-  <section class="container" aria-label="Top Slider">
-    <div class="slider-wrapper">
-      <div class="slider">
-        <img id="slide-1" src="/ZEEL_PORTFOLIO/assets/resume-3-cf7a9524.png" alt="Portfolio slide 1" />
-        <img id="slide-2" src="/ZEEL_PORTFOLIO/assets/resume-19-d2df27bb.png" alt="Portfolio slide 2" />
-        <img id="slide-3" src="/ZEEL_PORTFOLIO/assets/resume-16-51ff7487.png" alt="Portfolio slide 3" />
-        <img id="slide-4" src="/ZEEL_PORTFOLIO/assets/resume-1-cc123120.jpg" alt="Portfolio slide 4" />
-        <img id="slide-5" src="/ZEEL_PORTFOLIO/assets/resume-20-0b76bea3.png" alt="Portfolio slide 5" />
-        <img id="slide-6" src="/ZEEL_PORTFOLIO/assets/resume-10-a78e78a6.png" alt="Portfolio slide 6" />
-        <img id="slide-7" src="/ZEEL_PORTFOLIO/assets/resume-22-1124dd80.png" alt="Portfolio slide 7" />
-      </div>
-      <div class="slider-nav">
-        <a href="#slide-1"></a>
-        <a href="#slide-2"></a>
-        <a href="#slide-3"></a>
-        <a href="#slide-4"></a>
-        <a href="#slide-5"></a>
-        <a href="#slide-6"></a>
-        <a href="#slide-7"></a>
-      </div>
-    </div>
-  </section>
-
-  <!-- About -->
-  <div class="flex_container" id="about">
-    <div class="two_column card">
-      <div>
-        <header>Hi, I’m Zeel 👋</header>
-        <p>Software Engineer with 4+ years of experience in AI/ML systems and cloud-native solutions using Azure and AWS. Proven track record of designing, developing, and optimizing AI-driven applications and model deployment for scalable, high-performance services.</p>
-        <p>Skilled with LLMs/GenAI/RAG, security & compliance in cloud, and CI/CD + IaC for reliable, safe, and scalable models.</p>
-      </div>
-      <img src="/ZEEL_PORTFOLIO/assets/Final-profile-489ed60a.jpeg" alt="Zeel profile" />
-    </div>
-  </div>
-
-  <!-- ===== Work Experience (Cards) ===== -->
-  <section id="experience">
-    <div class="section-kicker">Scroll down to see my work experience</div>
-    <div class="exp-grid">
-
-      <!-- Card 1 -->
-      <article class="exp-card">
-        <div>
-          <h3 class="exp-title">LinkedIn — Software Test Engineer (Contract)</h3>
-          <div class="exp-meta">Dec 2024 – Present • Los Angeles, CA</div>
-          <ul class="exp-desc">
-            <li>Tested & validated AI/ML cloud solutions on Azure & AWS with a security-first approach.</li>
-            <li>Built test cases for Azure AI Search + OpenAI; verified context accuracy & performance.</li>
-            <li>Automated continuous testing with GitHub Actions & Azure DevOps.</li>
-            <li>Validated cloud integrations; ensured end-to-end data integrity for ML training & deployment.</li>
-          </ul>
-        </div>
-        <img src="images/exp-linkedin-test.jpg" alt="LinkedIn testing pipelines" />
-      </article>
-
-      <!-- Card 2 -->
-      <article class="exp-card">
-        <div>
-          <h3 class="exp-title">LinkedIn — Software Engineer (Contract)</h3>
-          <div class="exp-meta">Mar 2024 – Nov 2024 • Los Angeles, CA</div>
-          <ul class="exp-desc">
-            <li>Built LLM chatbot with Azure AI Search + OpenAI (RAG): −30% response time, +40% engagement.</li>
-            <li>Created LangChain + embeddings + vector store pipeline with custom prompts.</li>
-            <li>Delivered cloud-native AEM 6.5/AEMaaCS features; −20% deployment time.</li>
-            <li>Set up AWS S3 & Azure Blob workflows to support ML data pipelines.</li>
-          </ul>
-        </div>
-        <img src="images/exp-linkedin-eng.jpg" alt="LLM chatbot and AEM" />
-      </article>
-
-      <!-- Card 3 -->
-      <article class="exp-card">
-        <div>
-          <h3 class="exp-title">Google — Residency Program</h3>
-          <div class="exp-meta">Aug 2022 – Jan 2024 • Fullerton, CA</div>
-          <ul class="exp-desc">
-            <li>Developed & deployed models in Azure ML Studio end-to-end.</li>
-            <li>Fine-tuned NLP/LLMs with LangChain & OpenAI; improved response quality.</li>
-            <li>Built pipelines for vector search (Azure AI Search + Cosmos DB).</li>
-            <li>Optimized performance & scale with Docker/Kubernetes.</li>
-          </ul>
-        </div>
-        <img src="/ZEEL_PORTFOLIO/assets/Google-Zeel-90c1938d.jpg" alt="Zeel at Google" />
-      </article>
-
-      <!-- Card 4 -->
-      <article class="exp-card">
-        <div>
-          <h3 class="exp-title">California State University, Fullerton — Teaching Associate</h3>
-          <div class="exp-meta">Aug 2022 – Jan 2024 • Fullerton, CA</div>
-          <ul class="exp-desc">
-            <li>Taught 180+ students across AI/ML, Databases, and OOP.</li>
-            <li>Supported research on scalable AI/ML system architectures.</li>
-          </ul>
-        </div>
-        <img src="images/exp-teaching.jpg" alt="Teaching at CSUF" />
-      </article>
-
-      <!-- Card 5 -->
-      <article class="exp-card">
-        <div>
-          <h3 class="exp-title">CSU Fullerton — AI/ML Research Project</h3>
-        <div class="exp-meta">Jun 2023 – Oct 2023 • Fullerton, CA</div>
-          <ul class="exp-desc">
-            <li>Built a cloud-native recommendation engine with Azure ML Studio.</li>
-            <li>Integrated Azure AI + OpenAI for real-time inference.</li>
-            <li>Improved predictive performance via evaluation & tuning.</li>
-          </ul>
-        </div>
-        <img src="images/exp-research.jpg" alt="Recommendation engine diagram" />
-      </article>
-
-      <!-- Card 6 -->
-      <article class="exp-card">
-        <div>
-          <h3 class="exp-title">All In Motion IT Solutions — Software Developer</h3>
-          <div class="exp-meta">Jan 2020 – Jan 2022 • Vadodara, India</div>
-          <ul class="exp-desc">
-            <li>Built secure REST APIs (Java 11, Spring Boot, Hibernate) for 50+ endpoints.</li>
-            <li>Reduced backend load time by 40% via modularization.</li>
-            <li>Cut post-release bugs by 11% with testing frameworks.</li>
-          </ul>
-        </div>
-        <img src="images/exp-aim.jpg" alt="Java/Spring backend" />
-      </article>
-
-    </div>
-  </section>
-
-  <!-- Google card from your original (kept for posterity; can remove if redundant) -->
-  <div class="flex_container" id="google">
-    <div class="two_column card">
-      <div>
-        <header>Google Residency Program</header>
-        <p>Working with Google team as part of the Google Residency program, learning from Google experts.</p>
-        <p>Thanks to <a href="https://www.linkedin.com/in/joshdy/">JC</a> and <a href="https://www.linkedin.com/in/jlee1031/">Johnny</a> for guidance and support.</p>
-      </div>
-      <img src="/ZEEL_PORTFOLIO/assets/Google-Zeel-90c1938d.jpg" id="image1" alt="Google Residency" />
-    </div>
-  </div>
-
-  <!-- Projects -->
-  <div class="flex_container" id="projects">
-    <div class="two_column card">
-      <div>
-        <header>Haemotracer Mobile Application</header>
-        <p>Android app to help people find blood in emergencies (100+ users). MySQL + Geolocation + Maps JS API + Firebase collaborative mapping.</p>
-        <p><b>Built with</b> Java, JavaScript, Bootstrap, Android Studio, HTML/CSS, XML.</p>
-        <a href="https://github.com/zeeltrivedi1298/Haemotracer_Android_Application">Github Repository</a>
-      </div>
-      <img src="/ZEEL_PORTFOLIO/assets/haemotracer-1-e1546d17.png" id="image1" alt="Haemotracer App" />
-    </div>
-  </div>
-
-  <div class="flex_container">
-    <div class="two_column card">
-      <div>
-        <header>Orange Blossom Website</header>
-        <p>Accelerated a plant-store web app by 30% using React.js + Express.js. Managed data & billing for 20+ rare plants with MySQL.</p>
-        <a href="https://main--rad-fenglisiyu-92dbd87.netlify.app/">Live on Netlify</a><br />
-        <a href="https://github.com/zeeltrivedi1298/Orange-Blossom-Website">Github Repository</a>
-      </div>
-      <img src="/ZEEL_PORTFOLIO/assets/Orangeblossomimage-b4d6cfec.png" id="image1" alt="Orange Blossom" />
-    </div>
-  </div>
-
-  <div class="flex_container">
-    <div class="two_column card">
-      <div>
-        <header>Algorithm Savvy Traveler</header>
-        <p>Modified Floyd-Warshall to find most reliable flight paths among 10+ cities in Python.</p>
-        <a href="https://github.com/zeeltrivedi1298/Haemotracer_Android_Application">Github Repository</a>
-      </div>
-      <img src="/ZEEL_PORTFOLIO/assets/ALGO-2-a9a63034.png" id="image1" alt="Algorithm project" />
-    </div>
-  </div>
-
-  <div class="flex_container">
-    <div class="two_column card">
-      <div>
-        <header>Blog Application</header>
-        <p>Responsive blog using PHP, MySQL, CodeIgniter. “New Post” with title, description, image, tags + paginated list.</p>
-        <a href="https://github.com/zeeltrivedi1298/Blog-Application">Github Repository</a>
-      </div>
-      <img src="/ZEEL_PORTFOLIO/assets/Blog-website-222f0c4a.png" id="image1" alt="Blog App" />
-    </div>
-  </div>
-
-  <!-- Portfolio note -->
-  <div class="flex_container" id="portfolio">
-    <div class="two_column card">
-      <div>
-        <header>This Portfolio</header>
-        <p>Dynamic background built with Three.js. Single-column layout with reactive content cards.</p>
-        <a href="https://github.com/zeeltrivedi1298/Zeel_Portfolio?search=1">Github Repository</a>
-      </div>
-      <img src="/ZEEL_PORTFOLIO/assets/portfolio-1f4709b9.png" id="image1" alt="Portfolio screenshot" />
-    </div>
-  </div>
-
-  <!-- Classroom slider (your gallery) -->
-  <section class="container1" aria-label="Classroom Gallery">
-    <div class="slider-wrapper1">
-      <div class="slider1">
-        <img id="slide-1" src="/ZEEL_PORTFOLIO/assets/classroom-1-c1e9b0d0.jpeg" alt="Classroom 1" />
-        <img id="slide-2" src="/ZEEL_PORTFOLIO/assets/classroom-3-a9ba64d4.jpeg" alt="Classroom 2" />
-        <img id="slide-3" src="/ZEEL_PORTFOLIO/assets/classroom-5-dd090699.jpeg" alt="Classroom 3" />
-        <img id="slide-4" src="/ZEEL_PORTFOLIO/assets/classroom-7-21d1b016.jpeg" alt="Classroom 4" />
-        <img id="slide-5" src="/ZEEL_PORTFOLIO/assets/classroom-9-e3590a43.jpeg" alt="Classroom 5" />
-      </div>
-      <div class="slider-nav1">
-        <a href="#slide-1"></a>
-        <a href="#slide-2"></a>
-        <a href="#slide-3"></a>
-        <a href="#slide-4"></a>
-        <a href="#slide-5"></a>
-      </div>
-    </div>
-  </section>
-
-  <!-- Contact -->
-  <div class="flex_container" id="contact">
-    <div class="single_content card centered">
-      <div>
-        <header>Thanks for stopping by!</header>
-        <p><a href="https://drive.google.com/file/d/1IRl7pyCzEQseCsO2oXaAJY-n3jEvjzeM/view?usp=sharing">Resume</a></p>
-        <p><a href="https://github.com/zeeltrivedi1298">GitHub</a></p>
-        <p><a href="https://www.linkedin.com/in/zeel-trivedi/">LinkedIn</a></p>
-        <p><a href="mailto:zeeltrivedi1298@outlook.com">zeeltrivedi1298@outlook.com</a></p>
-      </div>
-    </div>
-  </div>
-
-</body>
 </html>
+
+  <!-- <section class="container"> -->
+        <!-- <div class="slider-wrapper"> -->
+            <!-- <div class="slider"> -->
+                <!-- <img id="slide-1" src="https://images.unsplash.com/photo-1656464868371-602be27fd4c2?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1200&q=80" alt="3D rendering of an imaginary orange planet in space" /> -->
+                <!-- <img id="slide-2" src="Google Zeel.jpg" alt="3D rendering of an imaginary green planet in space" /> -->
+                <!-- <img id="slide-2" src="https://images.unsplash.com/photo-1657586640569-4a3d4577328c?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1200&q=80" alt="3D rendering of an imaginary green planet in space" /> -->
+                <!-- <img id="slide-3" src="https://images.unsplash.com/photo-1656077217715-bdaeb06bd01f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1200&q=80" alt="3D rendering of an imaginary blue planet in space" /> -->
+            <!-- </div> -->
+            <!-- <div class="slider-nav"> -->
+                <!-- <a href="#slide-1"></a> -->
+                <!-- <a href="#slide-2"></a> -->
+                <!-- <a href="#slide-3"></a> -->
+            <!-- </div> -->
+        <!-- </div> -->
+    <!-- </section> -->
+
