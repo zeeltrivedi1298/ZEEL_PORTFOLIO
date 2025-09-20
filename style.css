@@ -104,7 +104,8 @@ header {
   background-color: rgba(247, 247, 247, 0.45);
   box-shadow: 0 0 10px 1px rgba(18, 18, 18, 0.25);
   backdrop-filter: blur(10px);
-  width: 50%;
+  width: 80%;
+  max-width: 900px;
 }
 
 .single_content {
@@ -117,14 +118,14 @@ header {
 }
 
 .two_column > * {
-  max-width: 302px;
+  max-width: 647px;
   padding: 0.5rem;
 }
 
 @media (min-width:768px) {
   .two_column {
       display: grid;
-      grid-template-columns: 1fr 1fr;
+      grid-template-columns: 2fr 1fr;
   }
 
   img{
