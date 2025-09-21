@@ -14,18 +14,23 @@
             font-weight: 500;
         }
 
-        /* Add the navbar styles */
+        /* Modern navbar styles */
         .navbar {
-            /* background-color: #eee4ee; */
-            /* background-color: #bee7e5; */
-            background-color: #a7dad8;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 0 0 20px 20px;
             display: flex;
             justify-content: center;
             position: fixed;
             top: 0;
-            left: 0;
-            right: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 95%;
+            max-width: 1200px;
             z-index: 999;
+            padding: 10px 0;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
         }
 
         .navbar ul {
@@ -33,21 +38,51 @@
             list-style: none;
             padding: 0;
             margin: 0;
+            gap: 10px;
         }
 
         .navbar li {
-            margin: 0 30px;
+            margin: 0;
         }
 
         .navbar li a {
-            color: #141313;
+            color: #2d3748;
             text-decoration: none;
-            padding: 10px;
+            padding: 12px 20px;
+            border-radius: 25px;
+            font-weight: 500;
+            font-size: 14px;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .navbar li a::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+            transition: left 0.5s;
         }
 
         .navbar li a:hover {
-            background-color: #555;
-            border-radius: 5px;
+            background: rgba(255, 255, 255, 0.25);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+            color: #1a202c;
+        }
+
+        .navbar li a:hover::before {
+            left: 100%;
+        }
+
+        .navbar li a:active {
+            transform: translateY(0);
         }
     </style>
         

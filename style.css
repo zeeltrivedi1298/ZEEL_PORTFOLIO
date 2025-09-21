@@ -342,18 +342,30 @@ p{
       max-width: 100%;
   }
 
-  /* Modify navigation styles */
+  /* Mobile navigation styles */
   .navbar {
-      background-color: #a7dad8;
+      width: 90%;
+      padding: 15px 0;
+      border-radius: 0 0 15px 15px;
   }
 
   .navbar ul {
       flex-direction: column;
       align-items: center;
+      gap: 8px;
   }
 
   .navbar li {
-      margin: 10px 0;
+      margin: 0;
+      width: 100%;
+      text-align: center;
+  }
+
+  .navbar li a {
+      padding: 10px 15px;
+      font-size: 13px;
+      width: 80%;
+      display: inline-block;
   }
 
   /* Adjust slider size and margins */
