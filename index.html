@@ -1,22 +1,27 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <style>html{visibility: visible;opacity:0; /* hide's for no awkward preload */
-        font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-        font-weight: 500;}
-        
-    
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zeel Trivedi Portfolio</title>
+
+    <style>
         html {
-            visibility: visible;
-            opacity: 0; /* hide's for no awkward preload */
+            scroll-padding-top: 100px;
             font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
             font-weight: 500;
         }
 
-        /* Modern navbar styles */
+        body {
+            margin: 0;
+            padding: 0;
+            background: #f5f5f5;
+        }
+
+        /* Navbar */
         .navbar {
-            background: rgba(255, 255, 255, 0.1);
+            background: #f5f5f5;
             backdrop-filter: blur(20px);
             border: 1px solid rgba(255, 255, 255, 0.2);
             border-radius: 0 0 20px 20px;
@@ -45,523 +50,385 @@
             margin: 0;
         }
 
-        .navbar li a {
-            color: #2d3748;
-            text-decoration: none;
-            padding: 12px 20px;
-            border-radius: 25px;
-            font-weight: 500;
-            font-size: 14px;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            position: relative;
-            overflow: hidden;
-            background: rgba(255, 255, 255, 0.1);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-        }
+.navbar li a {
+    position: relative;
+    color: #2d3748;
+    text-decoration: none;
+    padding: 12px 20px;
+    border-radius: 25px;
+    font-weight: 500;
+    font-size: 14px;
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    transition: all 0.3s ease;
+    will-change: transform;
+}
 
-        .navbar li a::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
-            transition: left 0.5s;
-        }
+.navbar li a:hover {
+    background: rgba(255, 255, 255, 0.25);
+    transform: translateY(-2px);
+    <!--/* box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15); */-->
+    color: #1a202c;
+}
 
-        .navbar li a:hover {
-            background: rgba(255, 255, 255, 0.25);
-            transform: translateY(-2px);
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
-            color: #1a202c;
-        }
+.navbar li a::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+    transition: left 0.5s;
+    pointer-events: none; /* Prevent flicker from gradient */
+}
+
 
         .navbar li a:hover::before {
             left: 100%;
         }
 
         .navbar li a:active {
-            transform: translateY(0);
+            transform: none;
+        }
+
+        /* Basic layout / container / card styles — you may have more in your CSS */
+        .flex_container {
+            display: flex;
+            justify-content: center;
+            padding: 60px 20px;
+        }
+        .card {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            max-width: 900px;
+            width: 100%;
+            padding: 20px;
+        }
+        .two_column {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+        .two_column > div {
+            flex: 1 1 300px;
+        }
+        .single_content {
+            text-align: center;
+        }
+        .centered {
+            margin: 0 auto;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+        }
+
+        section {
+            position: relative;
+            width: 100%;
+        }
+
+        .slider-wrapper, .slider-wrapper1 {
+            width: 100%;
+            overflow: hidden;
+        }
+        .slider, .slider1 {
+            display: flex;
+            width: max-content;
+            transition: transform 0.5s ease;
+        }
+        .slider-nav, .slider-nav1 {
+            text-align: center;
+            margin-top: 10px;
+        }
+        .slider-nav a, .slider-nav1 a {
+            margin: 0 5px;
+            display: inline-block;
+            width: 12px;
+            height: 12px;
+            background: #ccc;
+            border-radius: 50%;
+            text-indent: -9999px;
+        }
+        .slider-nav a:hover, .slider-nav1 a:hover {
+            background: #999;
+        }
+
+        /* Additional spacing bottom so last section can scroll into view */
+        #contact {
+            padding-bottom: 120px;
         }
     </style>
-        
+</head>
 
-        <meta charset="UTF-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
-    </head>
-    
-    <body>
-        <!-- Navbar -->
-        <nav class="navbar">
-            <ul>
-                <!-- Link each navigation item to the respective section using id attributes -->
-                <li><a href="#about">About Me</a></li>
-                <li><a href="#google">Google Residency</a></li>
-                <li><a href="#google">Work Experience</a></li>
-                <li><a href= "#Project">My Project</a></li>
-                <li><a href= "#contact">Resume</a></li>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar">
+        <ul>
+            <li><a href="#about">About Me</a></li>
+            <li><a href="#google">Google Residency</a></li>
+            <li><a href="#work">Work Experience</a></li>
+            <li><a href="#projects">My Project</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
 
-
-                <!-- <li><a href="#haemotracer">Haemotracer App</a></li>
-                <li><a href="#orange">Orange Blossom</a></li>
-                <li><a href="#algorithm">Algorithm Traveler</a></li> -->
-                <li><a href="#portfolio">Portfolio</a></li>
-                <li><a href="#contact">Contact</a></li>
-            </ul>
-        </nav>
-        
-        <!-- Rest of your content... -->
-        <!-- Your existing HTML code goes here -->
-        
-    
-    <script type="module" src="/3d-background.js"></script>
-
- 
-    </section> 
-
+    <!-- 3D background / canvas -->
     <canvas></canvas>
-
     <div class="curtain"></div>
 
-    <div class>
-
-
-    </div>
-
-    
-
-    <section class="container">
-        <div class="slider-wrapper">
-            <div class="slider">
-                <img id="slide-1" src="resume-3.png" alt="3D rendering of an imaginary orange planet in space" />
-                <!-- <img id="slide-2" src="Google Zeel.jpg" alt="3D rendering of an imaginary green planet in space" /> -->
-                <img id="slide-2" src="resume-19.png" alt="3D rendering of an imaginary green planet in space" />
-                <img id="slide-3" src="resume-16.png" alt="3D rendering of an imaginary blue planet in space" />
-                <img id="slide-4" src="resume-1.jpg" alt="3D rendering of an imaginary blue planet in space" />
-                <img id="slide-5" src="resume-20.png" alt="3D rendering of an imaginary blue planet in space" />
-                <img id="slide-6" src="resume-10.png" alt="3D rendering of an imaginary blue planet in space" />
-                <img id="slide-7" src="resume-22.png" alt="3D rendering of an imaginary blue planet in space" />
-            </div>
-            <div class="slider-nav">
-                <a href="#slide-1"></a>
-                <a href="#slide-2"></a>
-                <a href="#slide-3"></a>
-                <a href="#slide-4"></a>
-                <a href="#slide-5"></a>
-                <a href="#slide-6"></a>
-                <a href="#slide-6"></a>
-            </div>
-        </div>
-    </section>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    
-    
-
-
-
-    <div class="flex_container" id="about">
+    <!-- About Section -->
+    <section class="flex_container" id="about">
         <div class="two_column card">
-            <div >
-                <!-- <header>Hello,</header> -->
-                <!-- <header>My name is Zeel Trivedi.</header> -->
+            <div>
                 <p>AI Software Engineer with 4+ years of experience in AI/ML systems and cloud-native solutions using Azure and AWS.
-Proven track record of designing, developing, and optimizing AI-driven applications and model deployment for
-scalable, high-performance services. Skilled in working with Large Language Models (LLMs), Generative AI
-(GenAI), and Retrieval-Augmented Generation (RAG), ensuring security and compliance in the cloud environment.
-Demonstrated expertise in CI/CD pipelines, infrastructure as code, and cloud-based AI models that meet
-reliability, safety, and scalability standards.</p><p>Currently working as a Software Test Engineer at LinkedIn, focusing on testing and validating cloud-native AI solutions. Completed my Master's degree in Computer Science at California State University, Fullerton in 2024.</p>
+                Proven track record of designing, developing, and optimizing AI-driven applications and model deployment for
+                scalable, high-performance services. Skilled in working with Large Language Models (LLMs), Generative AI
+                (GenAI), and Retrieval-Augmented Generation (RAG), ensuring security and compliance in the cloud environment.
+                Demonstrated expertise in CI/CD pipelines, infrastructure as code, and cloud-based AI models that meet
+                reliability, safety, and scalability standards.</p>
+                <p>Currently working as a Software Test Engineer at LinkedIn, focusing on testing and validating cloud-native AI solutions. Completed my Master's degree in Computer Science at California State University, Fullerton in 2024.</p>
 
-                    <!-- , including React Admin Dashboard App and Haemotracer Mobile Application.</p> -->
-
-                <p> <u>Programming:</u> Java, Python, C#, SQL, JavaScript, HTML/CSS, React.js, PowerShell, Bash </p>
+                <p><u>Programming:</u> Java, Python, C#, SQL, JavaScript, HTML/CSS, React.js, PowerShell, Bash</p>
                 <p><u>Cloud Platforms & AI/ML:</u> Azure Machine Learning, Azure AI Search, OpenAI, LangChain, Lambda, Azure Functions, AKS, Azure Blob Storage</p>
                 <p><u>Machine Learning:</u> Large Language Models (LLMs), Generative AI (GenAI), Retrieval-Augmented Generation (RAG), NLP, Model Training & Optimization</p>
                 <p><u>Tools & Technologies:</u> Docker, Kubernetes, Jupyter Notebooks, Git, GitHub, MySQL, MongoDB, PostgreSQL, IntelliJ IDEA, VS Code</p>
-               
-                
-
-                <!-- <p> As a teaching associate at CSUF, I've had the privilege work with Google team and guiding over 150 students in web frontend development, databases, and OOP. Additionally, my experience as a project assistant has allowed me to contribute to impactful projects like Orange Blossom Website and Algorithm Savvy Traveler. At start up All in Motion IT Solutions,excelled as a software developer,enhancing inventory management systems and building analytical dashboards</p> -->
-                <!-- My <a href="https://github.com/zeeltrivedi1298">Github</a> containing this site and all projects featured 
-                here.
-                <br>
-                My <a href="https://www.linkedin.com/in/zeel-trivedi/">LinkedIn</a>, feel free to send me a message 
-                and connect!
-                <br>
-                And you can send me an e-mail at <a href="mailto:zeeltrivedi1298@outlook.com">zeeltrivedi1298@outlook.com</a>
-                <br> -->
-                <!-- Scroll down to see what the background is doing, and some short summaries on my projects. -->
             </div>
-            <img src="Final-profile.jpeg" >
+            <div>
+                <img src="Final-profile.jpeg" alt="Profile Image">
+            </div>
         </div>
-    </div>
+    </section>
 
-    <br>
-    <br>
-    <br>
+    <!-- Spacer / break -->
+    <br><br><br>
 
-<!-- ------------------------ -->
-    <div class="flex_container" id="about">
+    <!-- Experience / Summary block (not tied to a nav link) -->
+    <section class="flex_container">
         <div class="card">
-            <div >
-                <!-- <header>Hello,</header> -->
-                <!-- <header>My name is Zeel Trivedi.</header> -->
-                <B>Experience:
-                </B>
+            <div>
+                <b>Experience:</b>
                 <p> • <u>LinkedIn - Software Test Engineer (Dec 2024 - Present):</u> Testing and validating cloud-native AI solutions using Azure and AWS, ensuring security-first design principles and integrating cloud workflows for AI/ML model validation.</p>
-                   <p> • <u>LinkedIn - Software Engineer (Mar 2024 - Nov 2024):</u> Engineered LLM-powered chatbot using Azure AI Search, OpenAI APIs, and RAG pipelines, boosting engagement by 40% and reducing query time by 30%.</p>
-                    <p>• <u>Google Residency Program (Aug 2022 - Jan 2024):</u> Developed and deployed AI/ML models, worked on NLP/LLM fine-tuning using LangChain and OpenAI.</p>
-                    <p>• <u>Teaching Associate CSUF (Aug 2022 - Jan 2024):</u> Instructed 180+ students in AI/ML, database, and OOP concepts while assisting in faculty-led research.</p>
-                    <p>• <u>All In Motion IT Solutions - Software Developer (Jan 2020 - Jan 2022):</u> Developed secure RESTful APIs using Java 11, Spring Boot, and Hibernate, improving system performance by 40%. Spearheaded backend modularization, reducing load time by 40%, crucial for real-time data processing in AI/ML applications.
-                    </p>
+                <p> • <u>LinkedIn - Software Engineer (Mar 2024 - Nov 2024):</u> Engineered LLM-powered chatbot using Azure AI Search, OpenAI APIs, and RAG pipelines, boosting engagement by 40% and reducing query time by 30%.</p>
+                <p>• <u>Google Residency Program (Aug 2022 - Jan 2024):</u> Developed and deployed AI/ML models, worked on NLP/LLM fine-tuning using LangChain and OpenAI.</p>
+                <p>• <u>Teaching Associate CSUF (Aug 2022 - Jan 2024):</u> Instructed 180+ students in AI/ML, database, and OOP concepts while assisting in faculty-led research.</p>
+                <p>• <u>All In Motion IT Solutions - Software Developer (Jan 2020 - Jan 2022):</u> Developed secure RESTful APIs using Java 11, Spring Boot, and Hibernate, improving system performance by 40%. Spearheaded backend modularization, reducing load time by 40%, crucial for real-time data processing in AI/ML applications.</p>
 
+                <p>Certified Microsoft Azure AI Engineer Associate, Adobe Certified Professional AEM Developer, and Oracle Certified Expert Java Platform EE 6. I deliver efficient and user‑friendly AI/ML solutions. Connect with me on LinkedIn or explore my GitHub and portfolio. I look forward to making a meaningful impact and contributing my expertise to your AI/ML projects.</p>
 
-                <!-- <p> As a teaching associate,research at CSUF, I've had the privilege work with Google team and guiding over 150 students in web frontend development, databases, and OOP. Additionally, my experience as a project assistant has allowed me to contribute to impactful projects like Orange Blossom Website and Algorithm Savvy Traveler.</p> -->
+                <p>If you're in search of a dedicated professional to bring your digital visions to life or engineer cutting-edge software solutions, I'd be thrilled to collaborate with you. Let's join forces to create technological wonders and achieve new heights together!</p>
 
-             <!-- excelled as a software developer, enhancing inventory management systems and building analytical dashboards -->
-
-            <!-- <p> I take pride in delivering efficient and user-friendly solutions, evident in my certifications like Oracle Certified Expert Java Platform and AWS Training by Amazon Web Services. If you're looking for a dedicated and skilled developer with a passion for innovation, feel free to connect with me through LinkedIn or check out my GitHub and portfolio for a closer look at my work. Let's collaborate and bring your ideas to life!</p> -->
-
-            <p>Certified Microsoft Azure AI Engineer Associate, Adobe Certified Professional AEM Developer, and Oracle Certified Expert Java Platform EE 6. I deliver efficient and user-friendly AI/ML solutions. Connect with me on LinkedIn or explore my GitHub and portfolio. I look forward to making a meaningful impact and contributing my expertise to your AI/ML projects </p>
-
-
-            <p>If you're in search of a dedicated professional to bring your digital visions to life or engineer cutting-edge software solutions, I'd be thrilled to collaborate with you. Let's join forces to create technological wonders and achieve new heights together!</p>
-
-            <p>Let's bring your ideas to life! </p>
-
-            <br>
-        
-            My <a href="https://github.com/zeeltrivedi1298">Github</a> containing this site and all projects featured 
-                here.
                 <br>
-                My <a href="https://www.linkedin.com/in/zeel-trivedi/">LinkedIn</a>, feel free to send me a message 
-                and connect!
-                <br>
-                And you can send me an e-mail at <a href="mailto:zeeltrivedi1298@outlook.com">zeeltrivedi1298@outlook.com</a>
-                
-                
-
-                
-                                
-                <!-- My <a href="https://github.com/zeeltrivedi1298">Github</a> containing this site and all projects featured  -->
-            
-            
-                <!-- My <a href="https://www.linkedin.com/in/zeel-trivedi/">LinkedIn</a>, feel free to send me a message  -->
-                
-                
-                <!-- And you can send me an e-mail at <a href="mailto:zeeltrivedi1298@outlook.com">zeeltrivedi1298@outlook.com</a> -->
-                <div class=" tp">
-                <br>
-                <br>
-                <b>--> Scroll down to see what the background is doing, and some short summaries on my work experiences and projects!</b>
+                My <a href="https://github.com/zeeltrivedi1298">GitHub</a> containing this site and all projects featured here.<br>
+                My <a href="https://www.linkedin.com/in/zeel-trivedi/">LinkedIn</a>, feel free to send me a message and connect!<br>
+                And you can send me an e‑mail at <a href="mailto:zeeltrivedi1298@outlook.com">zeeltrivedi1298@outlook.com</a>
+                <div class="tp">
+                    <br><br><b>--> Scroll down to see what the background is doing, and some short summaries on my work experiences and projects!</b>
+                </div>
             </div>
-            </div>
-            <!-- <img src="Final profile.jpeg" > -->
         </div>
-    </div>
+    </section>
 
-    
+    <br><br><br><br><br><br><br><br><br><br><br><br><br>
 
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-
-    <!-- <p>As a teaching associate, I've had the privilege of guiding over 150 students in web frontend development, databases, and OOP. Additionally, my experience as a project assistant has allowed me to contribute to impactful projects like Orange Blossom Website and Algorithm Savvy Traveler. At All in Motion IT Solutions, I excelled as a software developer, enhancing inventory management systems and building analytical dashboards.</p>
-
-<p>I take pride in delivering efficient and user-friendly solutions, evident in my certifications like Oracle Certified Expert Java Platform and AWS Training by Amazon Web Services. If you're looking for a dedicated and skilled developer with a passion for innovation, feel free to connect with me through LinkedIn or check out my GitHub and portfolio for a closer look at my work. Let's collaborate and bring your ideas to life! </p> -->
-
-    <!-- <div class="flex_container">
-        <div class="single_content card">
-            <header>This Portfolio</header>
-            This websites dynamic background was created using the Threejs library. The center planet, 
-            its wireframe halo and the tetrahedron 'asteroids' are all rendered seperately and animated 
-            with random offsets and rotations that are different each time the site is loaded. 
-            The layout is a single column design of flexboxes that contain reactive content cards.
-            <br>
-            <br>
-            <a href="https://github.com/A-Hoblit/Portfolio">Github Repository</a>
-        </div>
-    </div> -->
-    
-    <div class="flex_container" id="google">
+    <!-- Work Experience Sections -->
+    <section class="flex_container" id="work">
         <div class="two_column card">
             <div>
                 <marquee><h3><b><i>Welcome to my work experience section!</i></b><br>Scroll down to see my work experience!</h3></marquee>
-                <marquee direction="left"
-             behavior="alternative"
-             style= "color:black">
-             <!-- *** comment this or style="border: black 2x solid" -->
-    </marquee>
                 <header>LinkedIn - Software Test Engineer</header>
-                <p>Currently working at LinkedIn as a Software Test Engineer, focusing on testing and validating cloud-native AI solutions deployed using Azure and AWS cloud services, ensuring security-first design principles.</p><p>Integrated cloud workflows and data pipelines (AWS S3, Azure Blob) to validate AI/ML models used for real-time predictions, ensuring accuracy, scalability, and audit readiness for AI-driven services. Developed test cases for AI-driven applications using Azure AI Search and OpenAI APIs.</p>
-               
-                <br>
-                <br>
-                <!-- <a href="https://github.com/zeeltrivedi1298/Haemotracer_Android_Application">Github Repository</a> -->
+                <p>Currently working at LinkedIn as a Software Test Engineer, focusing on testing and validating cloud-native AI solutions deployed using Azure and AWS cloud services, ensuring security-first design principles.</p>
+                <p>Integrated cloud workflows and data pipelines (AWS S3, Azure Blob) to validate AI/ML models used for real-time predictions, ensuring accuracy, scalability, and audit readiness for AI-driven services. Developed test cases for AI-driven applications using Azure AI Search and OpenAI APIs.</p>
             </div>
-            <img src="linkedin.jpg" id="image1">
+            <div>
+                <img src="linkedin.jpg" alt="LinkedIn image">
+            </div>
         </div>
-    </div>
+    </section>
+
     <br>
 
-    <div class="flex_container">
+    <section class="flex_container">
         <div class="two_column card">
             <div>
-                <header> LinkedIn - Software Engineer </header>
+                <header>LinkedIn - Software Engineer</header>
                 <p>Delivered high-performance, maintainable Java and Python code that reduced processing times by directly enhancing system efficiency and user experience. Engineered an LLM-powered chatbot using Azure AI Search, OpenAI APIs, and RAG pipelines, boosting engagement by 40% and reducing query time by 30%.</p>
-                    
-                    <p>Developed a LangChain + Azure OpenAI pipeline to transform website content into embeddings and a vector store for real-time, context-aware Q&A, with custom prompt engineering and model fine-tuning. Led the development of cloud-native solutions in AEM 6.5 and AEMaaCS, improving deployment speed by 20%.</p>
-               
-            
-                
-                <!-- <a href="https://github.com/zeeltrivedi1298/Haemotracer_Android_Application">Github Repository</a> -->
+                <p>Developed a LangChain + Azure OpenAI pipeline to transform website content into embeddings and a vector store for real-time, context-aware Q&A, with custom prompt engineering and model fine-tuning. Led the development of cloud-native solutions in AEM 6.5 and AEMaaCS, improving deployment speed by 20%.</p>
             </div>
-            <img src="linkedin.jpg" id="image1">
+            <div>
+                <img src="linkedin.jpg" alt="LinkedIn image">
+            </div>
         </div>
-    </div>
-    <div class="flex_container">
+    </section>
+
+    <section class="flex_container" id="google">
         <div class="two_column card">
             <div>
-                <header> Google Residency Program </header>
+                <header>Google Residency Program</header>
                 <p>Collaborating on code review and debugging, enhancing technical proficiency in backend and frontend development. Honed skills in code optimization, leading to a 15% increase in project completion efficiency.</p>
-                    <p>Built a strong understanding of data structures and algorithms – foundational for AI/ML roles. Applied LLM fine-tuning, advanced prompt engineering with LangChain (CoT/ToT), data chunking/loading for embeddings, integration with vector databases, and NLP/NLU/NLG techniques to develop scalable AI-driven solutions.</p>
-               
-            
-                <!-- <a href="https://github.com/zeeltrivedi1298/Haemotracer_Android_Application">Github Repository</a> -->
+                <p>Built a strong understanding of data structures and algorithms – foundational for AI/ML roles. Applied LLM fine‑tuning, advanced prompt engineering with LangChain (CoT/ToT), data chunking/loading for embeddings, integration with vector databases, and NLP/NLU/NLG techniques to develop scalable AI-driven solutions.</p>
             </div>
-            <!--/* <img src="TA-15.jpg" id="image1"> */-->
-            <img src="Google-Zeel.jpg" id="image1">
+            <div>
+                <img src="Google-Zeel.jpg" alt="Google Residency">
+            </div>
         </div>
-    </div>
-    <br>
-    <br>
-    <br>
+    </section>
 
+    <br><br><br>
 
-    <div class="flex_container">
+    <section class="flex_container">
         <div class="two_column card">
             <div>
-                <header> AI/ML Research Assistant CSUF </header>
+                <header>AI/ML Research Assistant CSUF</header>
                 <p>Led the development of a cloud-native AI recommendation engine, utilizing Azure ML Studio for training and deployment. Integrated Azure AI and OpenAI APIs to enhance model inference accuracy and achieve real-time, scalable recommendations.</p>
-               <p>Applied machine learning techniques to optimize predictive analytics and enhance model performance through model evaluation metrics. Built secure RESTful APIs applicable to building data pipelines for AI models.</p>
+                <p>Applied machine learning techniques to optimize predictive analytics and enhance model performance through model evaluation metrics. Built secure RESTful APIs applicable to building data pipelines for AI models.</p>
                 <p>Spearheaded backend modularization, reducing load time by 40%, crucial for real-time data processing in AI/ML applications. Built testing frameworks, reducing post-release bugs by 11%.</p>
-               
-            
-            
-                <!-- <a href="https://github.com/zeeltrivedi1298/Haemotracer_Android_Application">Github Repository</a> -->
             </div>
-            <img src="sd-1.jpg" id="image1">
+            <div>
+                <img src="sd-1.jpg" alt="CSUF Research">
+            </div>
         </div>
-    </div>
-    <br>
-    <br>
-    <br>
-    
+    </section>
 
+    <br><br><br>
 
-    <div class="flex_container">
+    <section class="flex_container">
         <div class="two_column card">
             <div>
-                <header> Teaching Associate CSUF </header>
-                <p>Instructed 180+ students in AI/ML, database, and OOP concepts while assisting in faculty-led research on app structure and scalability for AI/ML systems.</p>
-                    <p>Analyzed and developed new tutoring methods with various materials for students at university. Collaborated with teaching teams on debugging problems, reviewing, and writing optimized readable code.</p>
-                   <p>Lectured, directed exams, and prepared lessons for students on web frontend technologies such as flexbox, Grid, JavaScript, React.js, Transitions, Transform and Animation.</p>
-               
-                <br>
-                <br>
-                <!-- <a href="https://github.com/zeeltrivedi1298/Haemotracer_Android_Application">Github Repository</a> -->
+                <header>Teaching Associate CSUF</header>
+                <p>Instructed 180+ students in AI/ML, database, and OOP concepts while assisting in faculty‑led research on app structure and scalability for AI/ML systems.</p>
+                <p>Analyzed and developed new tutoring methods with various materials for students at university. Collaborated with teaching teams on debugging problems, reviewing, and writing optimized readable code.</p>
+                <p>Lectured, directed exams, and prepared lessons for students on web frontend technologies such as flexbox, Grid, JavaScript, React.js, Transitions, Transform and Animation.</p>
             </div>
-            <img src="TA_pic.jpeg" id="image1">
+            <div>
+                <img src="TA_pic.jpeg" alt="Teaching Associate">
+            </div>
         </div>
-    </div>
-    <br>
-    <br>
-    <br>
+    </section>
 
+    <br><br><br>
 
-
-    
-
-    <div class="flex_container">
+    <!-- Projects Section -->
+    <section class="flex_container" id="projects">
         <div class="two_column card">
             <div id="Project">
-                <marquee><h3><b><i>Welcome to my project section! </b><br>Scroll down to see few project  </h3></i></h3></marquee>
-                <marquee direction="left"
-             behavior="alternative"
-             style= "color:black">
-             <!-- *** comment this or style="border: black 2x solid" -->
-    </marquee>
-                <header> Chatbot Using Azure AI Search and OpenAI </header>
-                <p>🚀 Context-Aware Retrieval → Integrated Azure AI Search with OpenAI APIs for human-like, knowledge-grounded answers</p>
-
+                <marquee><h3><b><i>Welcome to my project section!</i></b><br>Scroll down to see few projects</h3></marquee>
+                <header>Chatbot Using Azure AI Search and OpenAI</header>
+                <p>🚀 Context-Aware Retrieval → Integrated Azure AI Search with OpenAI APIs for human‑like, knowledge‑grounded answers</p>
                 <p>💡 Smarter Responses → Optimized LLM performance with custom prompt engineering and fine-tuning, reducing latency by 30%</p>
-
                 <p>⚙️ RAG Pipeline in Action → LangChain + Azure AI Search powering real-time retrieval-augmented generation</p>
-
                 <p>🔗 End-to-End Deployment → CI/CD pipelines with Azure DevOps ensuring seamless updates and production-ready AI delivery</p>
-
-                <p><B>Advanced AI/ML project showcasing expertise in Large Language Models and cloud-native AI solutions</B></p>
-               
-                
-                <a href="https://github.com/zeeltrivedi1298/ChatBot_AI">Github Repository</a>
+                <p><b>Advanced AI/ML project showcasing expertise in Large Language Models and cloud-native AI solutions</b></p>
+                <a href="https://github.com/zeeltrivedi1298/ChatBot_AI">GitHub Repository</a>
             </div>
-            <!--/* <img src="haemotracer-1.png" id="image1"> */-->
-            <img src="haemotracer-1.png" id="image1">
+            <div>
+                <img src="Result1.png" alt="Chatbot Project">
+            </div>
         </div>
-    </div>
-    <br>
-    <br>
-    <br>
+    </section>
 
+    <br><br><br>
 
-    <div class="flex_container">
+    <section class="flex_container">
         <div class="two_column card">
             <div>
-                <header> Building RAG Application With Langchain</header>
+                <header>Building RAG Application With Langchain</header>
                 <p>Built a RAG app that can turn any website into a real-time Q&A system</p>
                 <p>🚀 From URL to Knowledge Base → converts any website into an interactive AI assistant</p>
                 <p>💡 Ask questions directly from a live webpage</p>
                 <p>⚙️ Developed a LangChain + Azure OpenAI RAG pipeline that transforms websites into Q&A-ready datasets</p>
-                <p>🔗 End-to-end AI project: Website → Embeddings → Vector Store → GPT-4 powered answers</p>
-
-            
-                <a href="https://github.com/zeeltrivedi1298/AzureAI-openAI-Rag-pipeline-Langchain">Github Repository</a>
+                <p>🔗 End-to-end AI project: Website → Embeddings → Vector Store → GPT‑4 powered answers</p>
+                <a href="https://github.com/zeeltrivedi1298/AzureAI-openAI-Rag-pipeline-Langchain">GitHub Repository</a>
             </div>
-            <img src="ALGO-2.png" id="image1">
-        </div>
-    </div>
-
-    <div class="flex_container">
-        <div class="two_column card">
             <div>
-                <header>Credit Card Fraud Detection Using Azure ML</header>
-                <p>Built and deployed a fraud detection system on Azure ML, improving real-time fraud detection and reducing false positives by 20%. Applied Azure AutoML for hyperparameter tuning and feature engineering, optimizing model accuracy for real-time financial data.</p><p>Deployed the model using Azure Kubernetes Service (AKS) to handle multi-region, scalable deployment. Integrated advanced machine learning techniques for predictive analytics in financial fraud detection.</p>
-                <p>Technologies used: Azure Machine Learning, Azure AutoML, Azure Kubernetes Service, Python, Machine Learning algorithms</p>
-            
-                
-                <br>
-                <br>
-                <a href="https://github.com/zeeltrivedi1298/Credit-Card-Fraud-Detection">Github Repository</a>
-            </div>
-            <img src="Orangeblossomimage.png" id="image1">
-        </div>
-    </div>
-
-
-    <div class="flex_container">
-        <div class="two_column card">
-            <div>
-                <header> Blog Application  </header>
-                <p>Developed a dynamic and responsive Blog Application using PHP, MySQL, and CodeIgniter.
-                   <p> Implemented a user-friendly "New Post" feature for creating blog posts with titles, descriptions, images, and tags.</p>
-                    Created a well-organized page with pagination for easy navigation through a comprehensive list of blogs.</p>
-                <br>
-                <br>
-                <a href="https://github.com/zeeltrivedi1298/Blog-Application">Github Repository</a>
-            </div>
-            <img src="Blog-website.png" id="image1">
-        </div>
-    </div>
-
-    <div class="flex_container"  id="portfolio">
-        <div class="two_column card">
-            <div>
-            <header>This Portfolio</header>
-           <p> This websites dynamic background was created using the Threejs library. The center planet, 
-            its wireframe halo and the tetrahedron 'asteroids' are all rendered seperately and animated 
-            with random offsets and rotations that are different each time the site is loaded. 
-            The layout is a single column design of flexboxes that contain reactive content cards.</p>
-            <br>
-            <br>
-            <a href="https://github.com/zeeltrivedi1298/Zeel_Portfolio?search=1">Github Repository</a>
-            </div>
-            <img src="portfolio.png" id="image1">
-        </div>
-    </div>
-
-
-    <div class="flex_container" id="contact"    >
-        <div class="single_content card centered">
-            <div >
-            <header>Thank you for having a look!</header>
-            <br>
-            <!-- <embed src="/Resume_website/ZeelTrivedi_Trivedi_Resume.pdf" type="application/pdf" width="100%" height="600px" />
-            <br> -->
-            <a href="https://drive.google.com/file/d/1IRl7pyCzEQseCsO2oXaAJY-n3jEvjzeM/view?usp=sharing"> Resume - AI Software Engineer</a>
-            <br>
-            <a href="https://github.com/zeeltrivedi1298">Github</a>
-            <br>
-            <a href="https://www.linkedin.com/in/zeel-trivedi/">LinkedIn</a>
-            <br>
-            <a href="mailto:zeeltrivedi1298@outlook.com">zeeltrivedi1298@outlook.com</a>
-        </div>
-    </div>
-    </div>
-
-    <section class="container1">
-        <div class="slider-wrapper1">
-            <div class="slider1">
-                <img id="slide-1" src="classroom-1.jpeg" alt="3D rendering of an imaginary orange planet in space" />
-                <!-- <img id="slide-2" src="Google Zeel.jpg" alt="3D rendering of an imaginary green planet in space" /> -->
-                <img id="slide-2" src="classroom-3.jpeg" alt="3D rendering of an imaginary green planet in space" />
-                <img id="slide-3" src="classroom-5.jpeg" alt="3D rendering of an imaginary blue planet in space" />
-                <img id="slide-4" src="classroom-7.jpeg" alt="3D rendering of an imaginary blue planet in space" />
-                <img id="slide-5" src="classroom-9.jpeg" alt="3D rendering of an imaginary blue planet in space" />
-            </div>
-            <div class="slider-nav1">
-                <a href="#slide-1"></a>
-                <a href="#slide-2"></a>
-                <a href="#slide-3"></a>
-                <a href="#slide-4"></a>
-                <a href="#slide-5"></a>
+                <img src="Result3.png" alt="RAG Project">
             </div>
         </div>
     </section>
-<body>
+
+    <section class="flex_container">
+        <div class="two_column card">
+            <div>
+                <header>Credit Card Fraud Detection Using Azure ML</header>
+                <p>Built and deployed a fraud detection system on Azure ML, improving real-time fraud detection and reducing false positives by 20%. Applied Azure AutoML for hyperparameter tuning and feature engineering, optimizing model accuracy for real-time financial data.</p>
+                <p>Deployed the model using Azure Kubernetes Service (AKS) to handle multi-region, scalable deployment. Integrated advanced machine learning techniques for predictive analytics in financial fraud detection.</p>
+                <br><br>
+                <a href="https://github.com/zeeltrivedi1298/Credit-Card-Fraud-Detection">GitHub Repository</a>
+            </div>
+            <div>
+                <img src="Fraudulent-Result.png" alt="Fraud Detection">
+            </div>
+        </div>
+    </section>
+
+    <section class="flex_container">
+        <div class="two_column card">
+            <div>
+                <header>Blog Application</header>
+                <p>Developed a dynamic and responsive Blog Application using PHP, MySQL, and CodeIgniter.</p>
+                <p>Implemented a user‑friendly "New Post" feature for creating blog posts with titles, descriptions, images, and tags.</p>
+                <p>Created a well-organized page with pagination for easy navigation through a comprehensive list of blogs.</p>
+                <br><br>
+                <a href="https://github.com/zeeltrivedi1298/Blog-Application">GitHub Repository</a>
+            </div>
+            <div>
+                <img src="Blog-website.png" alt="Blog Application">
+            </div>
+        </div>
+    </section>
+
+    <section class="flex_container" id="portfolio">
+        <div class="two_column card">
+            <div>
+                <header>This Portfolio</header>
+                <p>This website’s dynamic background was created using the Three.js library. The center planet, its wireframe halo and the tetrahedron 'asteroids' are all rendered separately and animated with random offsets and rotations that are different each time the site is loaded. The layout is a single column design of flexboxes that contain reactive content cards.</p>
+                <br><br>
+                <a href="https://github.com/zeeltrivedi1298/Zeel_Portfolio?search=1">GitHub Repository</a>
+            </div>
+            <div>
+                <img src="portfolio.png" alt="Portfolio">
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="flex_container" id="contact">
+        <div class="single_content card centered">
+            <div>
+                <header>Thank you for having a look!</header>
+                <br>
+                <a href="https://github.com/zeeltrivedi1298?tab=repositories">GitHub</a><br>
+                <a href="https://www.linkedin.com/in/zeel-trivedi/">LinkedIn</a><br>
+                <a href="mailto:zeel.trivedi101@gmail.com">zeel.trivedi101@gmail.com</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Resume / Slider at bottom -->
+    <!--/* <section class="container1">
+        <div class="slider-wrapper1">
+            <div class="slider1">
+                <img id="slide-1" src="classroom-1.jpeg" alt="">
+                <img id="slide-2" src="classroom-3.jpeg" alt="">
+                <img id="slide-3" src="classroom-5.jpeg" alt="">
+                <img id="slide-4" src="classroom-7.jpeg" alt="">
+                <img id="slide-5" src="classroom-9.jpeg" alt="">
+            </div>
+            <div class="slider-nav1">
+                <a href="#slide-1">1</a>
+                <a href="#slide-2">2</a>
+                <a href="#slide-3">3</a>
+                <a href="#slide-4">4</a>
+                <a href="#slide-5">5</a>
+            </div>
+        </div>
+    </section> */-->
+
+    <!-- Background / Additional Script -->
+    <script type="module" src="/3d-background.js"></script>
+</body>
 </html>
-
-  <!-- <section class="container"> -->
-        <!-- <div class="slider-wrapper"> -->
-            <!-- <div class="slider"> -->
-                <!-- <img id="slide-1" src="https://images.unsplash.com/photo-1656464868371-602be27fd4c2?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1200&q=80" alt="3D rendering of an imaginary orange planet in space" /> -->
-                <!-- <img id="slide-2" src="Google Zeel.jpg" alt="3D rendering of an imaginary green planet in space" /> -->
-                <!-- <img id="slide-2" src="https://images.unsplash.com/photo-1657586640569-4a3d4577328c?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1200&q=80" alt="3D rendering of an imaginary green planet in space" /> -->
-                <!-- <img id="slide-3" src="https://images.unsplash.com/photo-1656077217715-bdaeb06bd01f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1200&q=80" alt="3D rendering of an imaginary blue planet in space" /> -->
-            <!-- </div> -->
-            <!-- <div class="slider-nav"> -->
-                <!-- <a href="#slide-1"></a> -->
-                <!-- <a href="#slide-2"></a> -->
-                <!-- <a href="#slide-3"></a> -->
-            <!-- </div> -->
-        <!-- </div> -->
-    <!-- </section> -->
-
