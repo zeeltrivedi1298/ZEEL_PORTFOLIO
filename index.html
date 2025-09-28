@@ -158,6 +158,70 @@
             background: #999;
         }
 
+        /* Skills Section Styling */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 30px;
+        }
+
+        .skill-section {
+            background: #fff;
+            border-left: 4px solid #3b82f6;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+            transition: all 0.3s ease;
+        }
+
+        .skill-section:hover {
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+            transform: translateY(-2px);
+        }
+
+        .skill-section:nth-child(2) { border-left-color: #10b981; }
+        .skill-section:nth-child(3) { border-left-color: #f59e0b; }
+        .skill-section:nth-child(4) { border-left-color: #ef4444; }
+        .skill-section:nth-child(5) { border-left-color: #8b5cf6; }
+        .skill-section:nth-child(6) { border-left-color: #06b6d4; }
+
+        .skill-title {
+            display: flex;
+            align-items: center;
+            font-size: 16px;
+            font-weight: 600;
+            color: #1f2937;
+            margin-bottom: 15px;
+        }
+
+        .skill-title-icon {
+            margin-right: 8px;
+            font-size: 18px;
+        }
+
+        .skill-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+        }
+
+        .skill-tag {
+            background: #f8fafc;
+            color: #475569;
+            padding: 4px 10px;
+            border-radius: 4px;
+            font-size: 12px;
+            font-weight: 500;
+            border: 1px solid #e2e8f0;
+            transition: all 0.2s ease;
+        }
+
+        .skill-tag:hover {
+            background: #e2e8f0;
+            color: #334155;
+        }
+
         /* Additional spacing bottom so last section can scroll into view */
         #contact {
             padding-bottom: 120px;
@@ -182,7 +246,7 @@
     <!-- 3D background / canvas -->
     <canvas></canvas>
     <div class="curtain"></div>
-
+  <br><br><br><br><br><br><br><br><br><br><br><br><br>
     <!-- About Section -->
     <section class="flex_container" id="about">
         <div class="two_column card">
@@ -195,18 +259,107 @@
                 reliability, safety, and scalability standards.</p>
                 <p>Currently working as a Software Test Engineer at LinkedIn, focusing on testing and validating cloud-native AI solutions. Completed my Master's degree in Computer Science at California State University, Fullerton in 2024.</p>
 
-                <p><u>Programming:</u> Java, Python, SQL, JavaScript, React.js, Linux</p>
-                <p><u>AI/ML Frameworks:</u> PyTorch, TensorFlow, Hugging Face, LangChain, OpenAI APIs, LlamaIndex</p>
-                <p><u>Cloud:</u> Azure, AWS</p>
-                <p><u>Tools & Technologies:</u> Git, GitHub, MongoDB, PostgreSQL, IntelliJ IDEA, VS Code</p>
-                <p><u>Machine Learning & AI concepts:</u> Large Language Models (LLMs), Generative AI (GenAI), Vector Databases, Retrieval-Augmented Generation (RAG), Natural Language Processing (NLP), Advanced Prompting, Reinforcement Learning (RL), Reinforcement Learning with Human Feedback (RLHF), Model Training & Optimization, Embedding Generation, Feature Engineering, Responsible AI, Model Context Protocol (MCP), Agent 2 Agent Protocol (A2A)</p>
-                <p><u>DevOps:</u> Docker, Kubernetes, GitHub Actions, Azure DevOps, MLflow</p>
+                <div class="skills-grid">
+                    <div class="skill-section">
+                        <div class="skill-title">
+                            <span class="skill-title-icon">💻</span>
+                            Programming
+                        </div>
+                        <div class="skill-tags">
+                            <span class="skill-tag">Java</span>
+                            <span class="skill-tag">Python</span>
+                            <span class="skill-tag">SQL</span>
+                            <span class="skill-tag">JavaScript</span>
+                            <span class="skill-tag">React.js</span>
+                            <span class="skill-tag">Linux</span>
+                        </div>
+                    </div>
+
+                    <div class="skill-section">
+                        <div class="skill-title">
+                            <span class="skill-title-icon">🤖</span>
+                            AI/ML Frameworks
+                        </div>
+                        <div class="skill-tags">
+                            <span class="skill-tag">PyTorch</span>
+                            <span class="skill-tag">TensorFlow</span>
+                            <span class="skill-tag">Hugging Face</span>
+                            <span class="skill-tag">LangChain</span>
+                            <span class="skill-tag">OpenAI APIs</span>
+                            <span class="skill-tag">LlamaIndex</span>
+                        </div>
+                    </div>
+
+                    <div class="skill-section">
+                        <div class="skill-title">
+                            <span class="skill-title-icon">☁️</span>
+                            Cloud Platforms
+                        </div>
+                        <div class="skill-tags">
+                            <span class="skill-tag">Azure</span>
+                            <span class="skill-tag">AWS</span>
+                        </div>
+                    </div>
+
+                    <div class="skill-section">
+                        <div class="skill-title">
+                            <span class="skill-title-icon">🛠️</span>
+                            Tools & Technologies
+                        </div>
+                        <div class="skill-tags">
+                            <span class="skill-tag">Git</span>
+                            <span class="skill-tag">GitHub</span>
+                            <span class="skill-tag">MongoDB</span>
+                            <span class="skill-tag">PostgreSQL</span>
+                            <span class="skill-tag">IntelliJ IDEA</span>
+                            <span class="skill-tag">VS Code</span>
+                        </div>
+                    </div>
+
+                    <div class="skill-section">
+                        <div class="skill-title">
+                            <span class="skill-title-icon">🧠</span>
+                            ML & AI Concepts
+                        </div>
+                        <div class="skill-tags">
+                            <span class="skill-tag">Large Language Models (LLMs)</span>
+                            <span class="skill-tag">Generative AI (GenAI)</span>
+                            <span class="skill-tag">Vector Databases</span>
+                            <span class="skill-tag">RAG</span>
+                            <span class="skill-tag">NLP</span>
+                            <span class="skill-tag">Advanced Prompting</span>
+                            <span class="skill-tag">Reinforcement Learning (RL)</span>
+                            <span class="skill-tag">RLHF</span>
+                            <span class="skill-tag">Model Training & Optimization</span>
+                            <span class="skill-tag">Embedding Generation</span>
+                            <span class="skill-tag">Feature Engineering</span>
+                            <span class="skill-tag">Responsible AI</span>
+                            <span class="skill-tag">Model Context Protocol (MCP)</span>
+                            <span class="skill-tag">Agent 2 Agent Protocol (A2A)</span>
+                        </div>
+                    </div>
+
+                    <div class="skill-section">
+                        <div class="skill-title">
+                            <span class="skill-title-icon">🚀</span>
+                            DevOps
+                        </div>
+                        <div class="skill-tags">
+                            <span class="skill-tag">Docker</span>
+                            <span class="skill-tag">Kubernetes</span>
+                            <span class="skill-tag">GitHub Actions</span>
+                            <span class="skill-tag">Azure DevOps</span>
+                            <span class="skill-tag">MLflow</span>
+                        </div>
+                    </div>
+                </div>
             </div>
             <div>
                 <img src="/ZEEL_PORTFOLIO/assets/Final-profile-489ed60a.jpeg" alt="Profile Image">
             </div>
         </div>
     </section>
+      <br><br><br><br><br><br><br><br><br><br><br><br><br>
 
     <!-- Spacer / break -->
     <br><br><br>
@@ -377,21 +530,20 @@
     <!--/* <section class="flex_container">
         <div class="two_column card">
             <div>
-                <header>Agent Tools and Tool Calling with LangChain</header>
-                <p>🧑💻 Built a comprehensive hands-on guide for creating agent tools and enabling tool calling with LLMs using LangChain</p>
-                <p>🚀 Developed custom tools and integrated them into agent workflows for dynamic tool selection based on user queries</p>
-                <p>⚙️ Implemented tool registration mechanisms and agent loops that extend LLM capabilities with external APIs</p>
-                <p>💡 Created beginner-friendly Jupyter notebook demonstrating real-world LLM tool integration patterns</p>
+                <header>Blog Application</header>
+                <p>Developed a dynamic and responsive Blog Application using PHP, MySQL, and CodeIgniter.</p>
+                <p>Implemented a user‑friendly "New Post" feature for creating blog posts with titles, descriptions, images, and tags.</p>
+                <p>Created a well-organized page with pagination for easy navigation through a comprehensive list of blogs.</p>
                 <br><br>
-                <a href="https://github.com/zeeltrivedi1298/Agent-Tools-LangChain">GitHub Repository</a>
+                <a href="https://github.com/zeeltrivedi1298/Blog-Application">GitHub Repository</a>
             </div>
             <div>
-                <img src="langchain-tools.png" alt="LangChain Agent Tools">
+                <img src="Blog-website.png" alt="Blog Application">
             </div>
         </div>
     </section> */-->
 
-    <section class="flex_container" id="portfolio">
+    <!--/* <section class="flex_container" id="portfolio">
         <div class="two_column card">
             <div>
                 <header>This Portfolio</header>
@@ -400,10 +552,10 @@
                 <a href="https://github.com/zeeltrivedi1298/Zeel_Portfolio?search=1">GitHub Repository</a>
             </div>
             <div>
-                <img src="/ZEEL_PORTFOLIO/assets/portfolio-1f4709b9.png" alt="Portfolio">
+                <img src="portfolio.png" alt="Portfolio">
             </div>
         </div>
-    </section>
+    </section> */-->
 
     <!-- Contact Section -->
     <section class="flex_container" id="contact">
